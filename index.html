@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flipkart Food Fest 2026 - Share</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f0f0f0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:820px;display:grid;grid-template-columns:300px 1fr;box-shadow:0 8px 40px rgba(0,0,0,.15);overflow:hidden}
+.left{padding:28px 22px;border-right:1px solid #eee}
+.title{font-size:22px;font-weight:900;color:#1a1035;line-height:1.3;margin-bottom:18px}
+.cl{list-style:none;margin-bottom:24px}
+.cl li{font-size:13px;color:#444;padding:4px 0;display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.cl li::before{content:"➡️";font-size:12px;flex-shrink:0;margin-top:1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.icon-btn{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;border:none;background:none;padding:4px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-decoration:none}
+.icon-btn:active{opacity:.6}
+.circle{width:60px;height:60px;border-radius:50%;background:#e9e9e9;display:flex;align-items:center;justify-content:center;transition:background .15s,box-shadow .15s}
+.icon-btn:hover .circle{background:#ddd;box-shadow:0 3px 12px rgba(0,0,0,.15)}
+.icon-label{font-size:11px;color:#555;font-weight:500;text-align:center;width:60px}
+.right{padding:24px 22px;display:flex;flex-direction:column;position:relative}
+.close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;color:#bbb;cursor:pointer;line-height:1;padding:4px}
+.cap-box{border:1.5px solid #ddd;border-radius:12px;padding:14px 60px 14px 14px;position:relative;min-height:120px;cursor:text;flex:1;margin-bottom:14px}
+#cap{font-size:13.5px;color:#333;line-height:1.75;white-space:pre-wrap;outline:none;display:block;min-height:80px}
+#cap-ta{width:100%;min-height:90px;border:none;background:transparent;font-size:13.5px;color:#333;line-height:1.75;resize:none;outline:none;font-family:inherit;display:none}
+.edit-wrap{position:absolute;top:10px;right:10px}
+#edit{background:#5b4fcf;color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;width:52px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.foot{text-align:center;font-size:12px;color:#aaa;padding-top:8px;border-top:1px solid #f0f0f0}
+.foot a{color:#5b4fcf;text-decoration:none;font-weight:600}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1035;color:#fff;padding:12px 22px;border-radius:28px;font-size:13px;font-weight:600;z-index:9999;max-width:88vw;text-align:center;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.ov{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px}
+.ov-card{background:#fff;border-radius:16px;padding:22px;max-width:400px;width:100%}
+@media(max-width:620px){body{padding:0;align-items:flex-start}.modal{grid-template-columns:1fr;border-radius:0}.right{border-top:1px solid #eee}.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<div class="ov" id="ov"><div class="ov-card" id="ov-card"></div></div>
+
+<div class="modal">
+  <div class="left">
+    <div class="title">&#128075; Invite your network to Flipkart Food Fest!</div>
+    <ul class="cl">
+      <li>Add your photo/logo</li>
+      <li>Share your excitement</li>
+      <li>Choose where to share with your community &#128071;</li>
+    </ul>
+    <div class="grid" id="grid"></div>
+  </div>
+  <div class="right">
+    <button class="close" onclick="history.back()">&#10005;</button>
+    <div class="cap-box">
+      <span id="cap">Flipkart Food Fest is here! &#127881;&#127914; Two amazing days with 50+ top F&amp;B brands, live Masterchef demos, free product samples, and incredible live entertainment. July 7&#8211;8 at Embassy Tech Village, Bangalore. Don&apos;t miss the carnival!
+&#128717;&#65039; The excitement doesn&apos;t stop on the ground&mdash;experience the celebration nationwide with our massive Online Sale from July 7th&ndash;15th on the Flipkart app!
+For more updates, follow us on: https://www.instagram.com/flipkart_foodfest/
+#FlipkartFoodFest #FoodFest2026</span>
+      <textarea id="cap-ta"></textarea>
+      <div class="edit-wrap">
+        <button id="edit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <span style="font-size:10px">Edit</span>
+        </button>
+      </div>
+    </div>
+    <div class="foot">Powered by <a href="https://www.flipkart.com" target="_blank">Flipkart Commerce</a></div>
+  </div>
+</div>
+
+<!-- SVG icons stored as hidden spans - read by JS -->
+<span id="s-wa" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+<span id="s-ig" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
+<span id="s-li" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+<span id="s-em" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="#555" stroke-width="2"/><polyline points="22,4 12,13 2,4" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span id="s-fb" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span>
+<span id="s-ms" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></span>
+<span id="s-me" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.733 8.2l3.13 3.259L19.752 8.2l-6.561 6.763z"/></svg></span>
+<span id="s-xx" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+<span id="s-tg" style="display:none"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="#555" d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
+
+<script>
+var SITE = "For more updates, follow us on: https://www.instagram.com/flipkart_foodfest/";
+var P = [
+  {id:"wa", name:"WhatsApp",    pre:true,  url:function(t){return "https://wa.me/?text="+t;}},
+  {id:"em", name:"Email",       pre:true,  url:function(t){return "mailto:?subject=Flipkart%20Food%20Fest%202026&body="+t;}},
+  {id:"ms", name:"SMS",         pre:true,  url:function(t){return "sms:?body="+t;}},
+  {id:"li", name:"LinkedIn",    pre:false, url:function(){return "https://www.linkedin.com/feed/";}},
+  {id:"xx", name:"X (Twitter)", pre:true,  url:function(t){return "https://twitter.com/intent/tweet?text="+t;}},
+  {id:"me", name:"Messenger",   pre:false, url:function(){return "https://m.me/";}},
+  {id:"ig", name:"Instagram",   pre:false, url:function(){return "https://www.instagram.com/";}},
+  {id:"fb", name:"Facebook",    pre:false, url:function(){return "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(SITE);}},
+  {id:"tg", name:"Telegram",    pre:true,  url:function(t){return "https://t.me/share/url?url="+encodeURIComponent(SITE)+"&text="+t;}},
+];
+
+function getsvg(id){var e=document.getElementById("s-"+id);return e?e.innerHTML:"";}
+function getmsg(){return document.getElementById("cap").textContent.trim();}
+function docopy(t,cb){try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){if(cb)cb();}).catch(function(){fc(t);if(cb)cb();});}else{fc(t);if(cb)cb();}}catch(e){fc(t);if(cb)cb();}}
+function fc(t){var el=document.createElement("textarea");el.value=t;el.style.cssText="position:fixed;top:0;left:-9999px;opacity:0";document.body.appendChild(el);el.focus();el.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(el);}
+function showtoast(m){var t=document.getElementById("toast");t.textContent=m;t.style.opacity="1";clearTimeout(t._t);t._t=setTimeout(function(){t.style.opacity="0";},3200);}
+
+function share(p){
+  var raw=getmsg();
+  var enc=encodeURIComponent(raw);
+  if(p.pre){
+    docopy(raw,function(){
+      showtoast("Opening "+p.name+"... caption pre-filled - just tap Post!");
+      setTimeout(function(){window.open(p.url(enc),"_blank");},300);
+    });
+  } else if(p.id==="li"){
+    docopy(raw,function(){
+      showtoast("Caption copied! Opening LinkedIn... paste into the post box and tap Post.");
+      var mob=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(mob){
+        // linkedin://shareArticle opens the LinkedIn app directly into the post composer
+        var deepLink="linkedin://shareArticle?mini=true";
+        window.location.href=deepLink;
+        // After 2s, if app didn't open (not installed), fall back to mobile web
+        setTimeout(function(){
+          window.location.href="https://www.linkedin.com/feed/?shareActive=true";
+        },2000);
+      } else {
+        window.location.href="https://www.linkedin.com/feed/?shareActive=true";
+      }
+    });
+    } else {
+    docopy(raw,null);
+    var ov=document.getElementById("ov");
+    var oc=document.getElementById("ov-card");
+    var short=raw.length>180?raw.slice(0,180)+"...":raw;
+    oc.innerHTML="<div style='display:flex;align-items:center;gap:12px;margin-bottom:14px'>"
+      +"<div style='width:42px;height:42px;border-radius:50%;background:#e9e9e9;display:flex;align-items:center;justify-content:center;flex-shrink:0'>"+getsvg(p.id)+"</div>"
+      +"<div><div style='font-size:15px;font-weight:800;color:#1a1035'>Share to "+p.name+"</div>"
+      +"<div style='font-size:12px;color:#888'>"+(p.id==="li"?"Full caption copied - paste into the post box":"Caption copied to clipboard")+"</div></div></div>"
+      +"<div style='background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:9px;padding:11px;margin-bottom:11px'>"
+      +"<div style='font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:4px'>Caption ready in clipboard!</div>"
+      +"<div style='font-size:12px;color:#444;line-height:1.6;white-space:pre-wrap;max-height:80px;overflow-y:auto'>"+short+"</div></div>"
+      +"<div style='background:#fff3e0;border:1.5px solid #ffb74d;border-radius:9px;padding:11px;margin-bottom:14px'>"
+      +"<div style='font-size:12px;color:#555;line-height:1.7'><strong>Mobile:</strong> Long press in post box &rarr; Paste<br><strong>Desktop:</strong> Click post box &rarr; Ctrl+V</div></div>"
+      +"<a href='"+p.url(encodeURIComponent(raw))+"' style='display:block;text-align:center;background:#5b4fcf;color:#fff;font-size:14px;font-weight:700;padding:13px;border-radius:50px;text-decoration:none;margin-bottom:9px;-webkit-tap-highlight-color:transparent'>Open "+p.name+" &rarr;</a>"
+      +"<button onclick='document.getElementById(\"ov\").style.display=\"none\"' style='display:block;width:100%;background:none;border:none;color:#aaa;font-size:13px;cursor:pointer;padding:7px;touch-action:manipulation'>Cancel</button>";
+    ov.style.display="flex";
+    ov.onclick=function(e){if(e.target===ov)ov.style.display="none";};
+  }
+}
+
+// Build grid immediately - SVG spans already in DOM above this script
+(function(){
+  var grid=document.getElementById("grid");
+  P.forEach(function(p){
+    var a=document.createElement("a");
+    a.href="javascript:void(0)";
+    a.className="icon-btn";
+    var c=document.createElement("div");
+    c.className="circle";
+    c.innerHTML=getsvg(p.id);
+    var l=document.createElement("span");
+    l.className="icon-label";
+    l.textContent=p.name;
+    a.appendChild(c);
+    a.appendChild(l);
+    a.onclick=function(){share(p);return false;};
+    grid.appendChild(a);
+  });
+
+  // Edit button
+  document.getElementById("edit").onclick=function(){
+    var cap=document.getElementById("cap");
+    var ta=document.getElementById("cap-ta");
+    var btn=document.getElementById("edit");
+    if(ta.style.display==="block"){
+      cap.textContent=ta.value;
+      ta.style.display="none";
+      cap.style.display="block";
+      btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span style="font-size:10px">Edit</span>';
+    } else {
+      ta.value=cap.textContent.trim();
+      ta.style.display="block";
+      cap.style.display="none";
+      ta.focus();
+      btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:10px">Done</span>';
+    }
+  };
+})();
+</script>
+</body>
+</html>
